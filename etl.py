@@ -21,25 +21,9 @@ def insert_tables(cur, conn):
         cur.execute(query)
         conn.commit()
 
-def drop_tables(cur, conn):
-    """Drop all tables if they exist"""
-    for query in drop_table_queries:
-        cur.execute(query)
-        conn.commit()
-
-def create_tables(cur, conn):
-    """Create all tables"""
-    for query in create_table_queries:
-        cur.execute(query)
-        conn.commit()
-
-
 
 def main():
-    """Entrypoint for the full ETL process
-
-    Warning: will drop existing tables.
-    """
+    """Entrypoint for the full ETL process"""
 
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
@@ -47,8 +31,6 @@ def main():
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
 
-    drop_tables(cur, conn)
-    create_tables(cur, conn)
     load_staging_tables(cur, conn)
     insert_tables(cur, conn)
 

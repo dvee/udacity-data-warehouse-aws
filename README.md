@@ -6,6 +6,8 @@ Load song and event data from the "Sparkify" music application logs into an Amaz
 
 Copy `dwh.cfg.example` to `dwh.config` and fill in details for your Redshift cluster. Note that the IAM Role supplied needs Read access to S3.
 
+Run `create_tables.py` to clean up any existing tables and create new tables.
+
 Run `etl.py` to perform the full ETL process.
 
 # Design
