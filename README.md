@@ -2,6 +2,16 @@
 
 Load song and event data from the "Sparkify" music application logs into an Amazon Redshift database for analytics processing.
 
+# Extensions Beyond the Curriculum
+
+## Infrastructure as Code
+
+We use Terraform to manage the creation of the Redshift cluster in AWS. This includes:
+
+- Use of KMS secrets to encrypt DB credentials in .tf files
+- Remote state stored in S3, KMS encrypted to avoid leaking secrets
+- All required IAM Role and Policies are also managed in Terraform
+
 # Quickstart
 
 Copy `dwh.cfg.example` to `dwh.config` and fill in details for your Redshift cluster. Note that the IAM Role supplied needs Read access to S3.
